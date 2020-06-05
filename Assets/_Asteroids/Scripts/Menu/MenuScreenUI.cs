@@ -5,25 +5,25 @@ using Asteroids.Events;
 namespace Asteroids.UI
 {
     /// <summary>
-    /// Update Menu UI Elements.
+    /// Handle Menu Screen UI Elements.
     /// </summary>
-    public class MenuUI : MonoBehaviour
+    public class MenuScreenUI : MonoBehaviour
     {
         [SerializeField] Button launchBtn;
 
         private void OnEnable()
         {
-            launchBtn.onClick.AddListener(OnLaunchClicked);
+            launchBtn.onClick.AddListener(LaunchClicked);
         }
 
         private void OnDisable()
         {
-            launchBtn.onClick.RemoveListener(OnLaunchClicked);
+            launchBtn.onClick.RemoveListener(LaunchClicked);
         }
 
-        private void OnLaunchClicked()
+        private void LaunchClicked()
         {
-            GameEvents.UIButtonClicked(Constants.LAUNCH_BUTTON);
+            GameEvents.UIButtonClicked(Constants.Buttons.LAUNCH_BUTTON);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine.SceneManagement;
 using Asteroids;
 using Asteroids.Events;
 
@@ -29,7 +28,7 @@ public class GameManager : Singleton<GameManager>
 
     private void SceneLoadedHandler(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == Constants.MENU_SCENE)
+        if (scene.name == Constants.Scenes.MENU_SCENE)
         {
             gameState = GameState.Menu;
         }
@@ -37,5 +36,25 @@ public class GameManager : Singleton<GameManager>
         {
             gameState = GameState.Running;
         }
+    }
+
+    public void PauseGame()
+    {
+        if(gameState == GameState.Pause)
+        {
+            GameEvents.GamePaused(false);
+            gameState = GameState.Running;
+        }
+        else
+        {
+            GameEvents.GamePaused(true);
+            gameState = GameState.Pause;
+        }
+    }
+
+    public void GameCompleted()
+    {
+        gameState = GameState.Result;
+        GameEvents.GameCompleted();
     }
 }

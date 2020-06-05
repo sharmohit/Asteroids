@@ -9,5 +9,10 @@ namespace Asteroids.Events
     {
         // UI Action
         public static Action<string> UIButtonClicked;
+        public static Action<UIScreen, bool> ShowUIScreen;
+
+        // State Action
+        public static Action<bool> GamePaused;
+        public static Action GameCompleted;
     }
 }
