@@ -35,5 +35,7 @@
             public const string MENU_SCENE = "Menu";
             public const string GAME_SCENE = "Game";
         }
+
+        public const string HIGH_SCORE_SAVE_KEY = "high_score";
     }
 }

@@ -20,6 +20,11 @@ namespace Asteroids.Controller
             {
                 GameManager.Instance.GameCompleted();
             }
+
+            if(Input.GetKeyDown(KeyCode.S))
+            {
+                GameEvents.IncrementScore();
+            }
         }
     }
 }

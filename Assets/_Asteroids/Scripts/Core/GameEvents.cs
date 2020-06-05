@@ -13,6 +13,9 @@ namespace Asteroids.Events
 
         // State Action
         public static Action<bool> GamePaused;
+
         public static Action GameCompleted;
+        public static Action IncrementScore;
+        public static Action ScoreUpdate;
     }
 }

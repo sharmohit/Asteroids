@@ -10,10 +10,16 @@ namespace Asteroids.UI
     public class MenuScreenUI : MonoBehaviour
     {
         [SerializeField] Button launchBtn;
+        [SerializeField] Text highScore;
 
         private void OnEnable()
         {
             launchBtn.onClick.AddListener(LaunchClicked);
+        }
+
+        private void Start()
+        {
+            highScore.text = PlayerPrefs.GetInt(Constants.HIGH_SCORE_SAVE_KEY).ToString();
         }
 
         private void OnDisable()
