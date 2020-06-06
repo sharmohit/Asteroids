@@ -36,8 +36,7 @@ namespace Asteroids.Controller
         {
             Score += 1;
 
-            Debug.Log("Score " + Score);
-            GameEvents.ScoreUpdate();
+            GameEvents.ScoreUpdate(Score);
         }
     }
 }

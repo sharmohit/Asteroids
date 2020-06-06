@@ -14,17 +14,6 @@ namespace Asteroids.Controller
             {
                 GameManager.Instance.PauseGame();
             }
-
-            // Temp Code for Testing
-            if(Input.GetKeyDown(KeyCode.W))
-            {
-                GameManager.Instance.GameCompleted();
-            }
-
-            if(Input.GetKeyDown(KeyCode.S))
-            {
-                GameEvents.IncrementScore();
-            }
         }
     }
 }

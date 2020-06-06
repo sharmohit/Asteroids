@@ -16,6 +16,6 @@ namespace Asteroids.Events
 
         public static Action GameCompleted;
         public static Action IncrementScore;
-        public static Action ScoreUpdate;
+        public static Action<int> ScoreUpdate;
     }
 }
