@@ -10,6 +10,7 @@ namespace Asteroids.UI
     public class GameScreenUI : MonoBehaviour
     {
         [SerializeField] GameObject pauseScreen;
+        [SerializeField] GameObject hudScreen;
         [SerializeField] GameObject resultScreen;
 
         private void OnEnable()
@@ -28,7 +29,11 @@ namespace Asteroids.UI
             {
                 pauseScreen.SetActive(isActive);
             }
-            else if(screen == UIScreen.Result)
+            else if(screen == UIScreen.HUD)
+            {
+                hudScreen.SetActive(isActive);
+            }
+            else if (screen == UIScreen.Result)
             {
                 resultScreen.SetActive(isActive);
             }

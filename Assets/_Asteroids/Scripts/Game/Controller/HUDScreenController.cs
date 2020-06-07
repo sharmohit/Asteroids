@@ -10,12 +10,17 @@ namespace Asteroids.Controller
     {
         private void OnEnable()
         {
-
+            GameActions.GameCompleted += GameCompleted;
         }
 
         private void OnDisable()
         {
+            GameActions.GameCompleted -= GameCompleted;
+        }
 
+        private void GameCompleted()
+        {
+            GameActions.ShowUIScreen(UIScreen.HUD, false);
         }
     }
 }

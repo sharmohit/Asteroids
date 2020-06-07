@@ -11,8 +11,11 @@ namespace Asteroids.Gameplay
     {
         [SerializeField] GameObject playerPrefab;
         [SerializeField] GameObject asteroidPrefab;
+        [SerializeField] GameObject saucerBigPrefab;
+        [SerializeField] GameObject powerUpPrefab;
 
         private PlayerShip playerShip;
+        private SaucerBig saucerBig;
         private List<Asteroid> asteroids;
 
         private int currentLevel;
@@ -20,22 +23,28 @@ namespace Asteroids.Gameplay
         private void OnEnable()
         {
             GameActions.DestroyAsteroid += DestroyAsteroid;
+            GameActions.DestroyBigSaucer += DestroyBigSaucer;
+            GameActions.DestroyPlayer += DestroyPlayer;
             GameActions.LevelUp += LevelUp;
         }
 
         private void OnDisable()
         {
             GameActions.DestroyAsteroid -= DestroyAsteroid;
+            GameActions.DestroyBigSaucer -= DestroyBigSaucer;
             GameActions.LevelUp -= LevelUp;
+            GameActions.DestroyPlayer -= DestroyPlayer;
         }
 
         private void Start()
         {
             asteroids = new List<Asteroid>();
 
+            GameActions.ShowUIScreen(UIScreen.HUD, true);
             LevelUp();
 
             SpawnPlayer();
+            SpawnSaucerBig();
             SpawnAsteroids(asteroidPrefab, currentLevel);
         }
 
@@ -71,6 +80,14 @@ namespace Asteroids.Gameplay
             playerShip = playerObj.GetComponent<PlayerShip>();
         }
 
+        private void SpawnSaucerBig()
+        {
+            GameObject saucerObj = Instantiate(saucerBigPrefab);
+            saucerBig = saucerObj.GetComponent<SaucerBig>();
+            saucerObj.transform.position = Utilities.ConvertScreenToWorldPoint(Utilities.GetRandomScreenPoint(Random.value, 0.6f));
+            saucerBig.Direction = Utilities.GetRandomSpawnPoint().normalized;
+        }
+
         private void DestroyAsteroid(GameObject asteroidObject)
         {
             Asteroid asteroid = asteroidObject.GetComponent<Asteroid>();
@@ -85,8 +102,37 @@ namespace Asteroids.Gameplay
 
             if (asteroids.Count == 0)
             {
-                Invoke("NextLevel", 1.2f);
+                Invoke("NextLevel", Constants.Gameplay.NEXT_LEVEL_DELAY);
             }
+        }
+
+        private void DestroyPlayer()
+        {
+            playerShip.gameObject.SetActive(false);
+            if(playerShip.extraLives > 0)
+            {
+                playerShip.extraLives--;
+                Invoke("RevivePlayer", Constants.Gameplay.PLAYER_REVIVE_DELAY);
+            }
+            else
+            {
+                CancelInvoke("RevivePlayer");
+                Destroy(playerShip.gameObject);
+                RemoveAllObjects();
+                GameManager.Instance.GameCompleted();
+            }
+        }
+
+        private void DestroyBigSaucer()
+        {
+            GameObject powerUpObj = Instantiate(powerUpPrefab);
+            powerUpObj.transform.position = saucerBig.transform.position;
+            Destroy(saucerBig.gameObject);
+        }
+
+        private void RevivePlayer()
+        {
+            playerShip.gameObject.SetActive(true);
         }
 
         private void LevelUp()
@@ -98,6 +144,18 @@ namespace Asteroids.Gameplay
         private void NextLevel()
         {
             SpawnAsteroids(asteroidPrefab, currentLevel);
+        }
+
+        private void RemoveAllObjects()
+        {
+            CancelInvoke("NextLevel");
+
+            for (int i = 0; i < asteroids.Count; i++)
+            {
+                Destroy(asteroids[i].gameObject);
+            }
+
+            asteroids.Clear();
         }
     }
 }

@@ -70,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 3ffda6fa8aaa65e42acfccf56fcad4e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae60fe7391e54045a05a75f381d0aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 2.5
   canRotate: 1
   rotateSpeed: 40
   translateSpace: 0
@@ -118,6 +118,7 @@ MonoBehaviour:
   health: 100
   nextAsteroid: {fileID: 2577052183314073435, guid: a31cc66f2b056c24f8dd7add66652674,
     type: 3}
+  rewardScore: 7
 --- !u!50 &50134315693537520
 Rigidbody2D:
   serializedVersion: 4

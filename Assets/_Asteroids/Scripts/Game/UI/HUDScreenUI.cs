@@ -14,7 +14,7 @@ namespace Asteroids.UI
 
         private void Start()
         {
-            scoreText.text = "";
+            scoreText.text = "0";
         }
 
         private void OnEnable()

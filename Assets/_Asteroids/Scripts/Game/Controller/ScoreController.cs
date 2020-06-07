@@ -11,6 +11,8 @@ namespace Asteroids.Controller
     {
         public int Score { get; private set; }
 
+        private int scoreMultiple;
+
         private void OnEnable()
         {
             GameActions.AddScore += AddScore;
@@ -20,6 +22,7 @@ namespace Asteroids.Controller
         private void Start()
         {
             Score = 0;
+            scoreMultiple = Constants.Gameplay.LEVEL_UP_SCORE_MULTIPLE;
         }
 
         private void OnDisable()
@@ -39,10 +42,11 @@ namespace Asteroids.Controller
             Score += value;
 
             GameActions.ScoreUpdate(Score);
-
-            if(Score % 100 == 0)
+            
+            if( Score > scoreMultiple)
             {
                 GameActions.LevelUp();
+                scoreMultiple += scoreMultiple;
             }
         }
 

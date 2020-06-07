@@ -15,6 +15,7 @@
     public enum UIScreen
     {
         Pause,
+        HUD,
         Result
     }
 
@@ -40,6 +41,13 @@
         {
             public const string PLAYER_BULLET_TAG = "Bullet";
             public const string PLAYER_TAG = "Player";
+        }
+
+        public struct Gameplay
+        {
+            public const int LEVEL_UP_SCORE_MULTIPLE = 100;
+            public const float NEXT_LEVEL_DELAY = 1.2f;
+            public const float PLAYER_REVIVE_DELAY = 0.5f;
         }
 
         public const string HIGH_SCORE_SAVE_KEY = "high_score";

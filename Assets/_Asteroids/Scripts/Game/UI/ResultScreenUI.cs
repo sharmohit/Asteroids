@@ -9,7 +9,7 @@ namespace Asteroids.UI
     /// </summary>
     public class ResultScreenUI : MonoBehaviour
     {
-        [SerializeField] Text score;
+        [SerializeField] Text scoreText;
         [SerializeField] Button retryBtn;
         [SerializeField] Button quitBtn;
 
@@ -17,6 +17,8 @@ namespace Asteroids.UI
         {
             retryBtn.onClick.AddListener(RetryClicked);
             quitBtn.onClick.AddListener(QuitClicked);
+
+            GameActions.GetScore(GetScore);
         }
 
         private void OnDisable()
@@ -33,6 +35,11 @@ namespace Asteroids.UI
         private void QuitClicked()
         {
             GameActions.UIButtonClicked(Constants.Buttons.QUIT_BUTTON);
+        }
+
+        private void GetScore(int score)
+        {
+            scoreText.text = score.ToString();
         }
     }
 }

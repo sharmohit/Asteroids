@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Asteroids.Actions;
 
 namespace Asteroids.Gameplay
 {
@@ -11,6 +12,8 @@ namespace Asteroids.Gameplay
         [SerializeField] float forwardThrust = 7.0f;
         [SerializeField] float roatationalThrust = 3.5f;
 
+        public int extraLives;
+
         private Rigidbody2D rb;
 
         private float thrustInput;
@@ -21,6 +24,16 @@ namespace Asteroids.Gameplay
             base.Awake();
 
             rb = GetComponent<Rigidbody2D>();
+        }
+
+        private void OnEnable()
+        {
+            GameActions.PowerUpPickedUp += PowerUpPickedUp;
+        }
+
+        private void OnDisable()
+        {
+            GameActions.PowerUpPickedUp -= PowerUpPickedUp;
         }
 
         public override void Update()
@@ -71,6 +84,11 @@ namespace Asteroids.Gameplay
         {
             AddForwardThrust();
             AddRotationalThrust();
+        }
+
+        private void PowerUpPickedUp()
+        {
+            Debug.Log("Power Up Added");
         }
     }
 }

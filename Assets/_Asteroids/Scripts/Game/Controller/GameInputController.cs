@@ -10,7 +10,7 @@ namespace Asteroids.Controller
     {
         void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Escape))
+            if(Input.GetKeyDown(KeyCode.Escape) && GameManager.Instance.GameState != GameState.Result)
             {
                 GameManager.Instance.PauseGame();
             }

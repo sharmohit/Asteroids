@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Asteroids.Actions
 {
     /// <summary>
-    /// Hold All Game Actions.
+    /// Holds all the game actions observers.
     /// </summary>
     public static class GameActions
     {
@@ -23,6 +23,8 @@ namespace Asteroids.Actions
         public static Action<int> LevelUpdate;
 
         public static Action<GameObject> DestroyAsteroid;
+        public static Action DestroyBigSaucer;
         public static Action DestroyPlayer;
+        public static Action PowerUpPickedUp;
     }
 }
