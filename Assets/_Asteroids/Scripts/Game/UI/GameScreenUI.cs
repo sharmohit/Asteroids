@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using Asteroids.Events;
+using Asteroids.Actions;
 
 namespace Asteroids.UI
 {
@@ -14,12 +14,12 @@ namespace Asteroids.UI
 
         private void OnEnable()
         {
-            GameEvents.ShowUIScreen += ShowUIScreen;
+            GameActions.ShowUIScreen += ShowUIScreen;
         }
 
         private void OnDisable()
         {
-            GameEvents.ShowUIScreen -= ShowUIScreen;
+            GameActions.ShowUIScreen -= ShowUIScreen;
         }
 
         private void ShowUIScreen(UIScreen screen, bool isActive)

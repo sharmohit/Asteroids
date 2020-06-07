@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using Asteroids.Events;
+using Asteroids.Actions;
 
 namespace Asteroids.Controller
 {
@@ -11,12 +11,12 @@ namespace Asteroids.Controller
     {
         private void OnEnable()
         {
-            GameEvents.UIButtonClicked += UIButtonClicked;
+            GameActions.UIButtonClicked += UIButtonClicked;
         }
 
         private void OnDisable()
         {
-            GameEvents.UIButtonClicked -= UIButtonClicked;
+            GameActions.UIButtonClicked -= UIButtonClicked;
         }
 
         private void UIButtonClicked(string buttonName)

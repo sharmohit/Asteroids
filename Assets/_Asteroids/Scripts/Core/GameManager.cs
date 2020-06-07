@@ -1,6 +1,6 @@
 ﻿using UnityEngine.SceneManagement;
 using Asteroids;
-using Asteroids.Events;
+using Asteroids.Actions;
 
 /// <summary>
 /// GameManager manages game flow and state.
@@ -42,12 +42,12 @@ public class GameManager : Singleton<GameManager>
     {
         if(gameState == GameState.Pause)
         {
-            GameEvents.GamePaused(false);
+            GameActions.GamePaused(false);
             gameState = GameState.Running;
         }
         else
         {
-            GameEvents.GamePaused(true);
+            GameActions.GamePaused(true);
             gameState = GameState.Pause;
         }
     }
@@ -55,6 +55,6 @@ public class GameManager : Singleton<GameManager>
     public void GameCompleted()
     {
         gameState = GameState.Result;
-        GameEvents.GameCompleted();
+        GameActions.GameCompleted();
     }
 }

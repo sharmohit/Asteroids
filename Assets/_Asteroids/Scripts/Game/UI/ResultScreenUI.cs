@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using Asteroids.Events;
+using Asteroids.Actions;
 
 namespace Asteroids.UI
 {
@@ -27,12 +27,12 @@ namespace Asteroids.UI
 
         private void RetryClicked()
         {
-            GameEvents.UIButtonClicked(Constants.Buttons.RETRY_BUTTON);
+            GameActions.UIButtonClicked(Constants.Buttons.RETRY_BUTTON);
         }
 
         private void QuitClicked()
         {
-            GameEvents.UIButtonClicked(Constants.Buttons.QUIT_BUTTON);
+            GameActions.UIButtonClicked(Constants.Buttons.QUIT_BUTTON);
         }
     }
 }

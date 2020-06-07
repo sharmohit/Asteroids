@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Asteroids.Events;
+using Asteroids.Actions;
 
 namespace Asteroids.Controller
 {
@@ -10,17 +10,17 @@ namespace Asteroids.Controller
     {
         private void OnEnable()
         {
-            GameEvents.GamePaused += GamePaused;
+            GameActions.GamePaused += GamePaused;
         }
 
         private void OnDisable()
         {
-            GameEvents.GamePaused -= GamePaused;
+            GameActions.GamePaused -= GamePaused;
         }
 
         private void GamePaused(bool isPause)
         {
-            GameEvents.ShowUIScreen(UIScreen.Pause, isPause);
+            GameActions.ShowUIScreen(UIScreen.Pause, isPause);
         }
     }
 }

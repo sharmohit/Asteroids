@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using Asteroids.Events;
+using Asteroids.Actions;
 
 namespace Asteroids.UI
 {
@@ -10,6 +10,7 @@ namespace Asteroids.UI
     public class HUDScreenUI : MonoBehaviour
     {
         [SerializeField] Text scoreText;
+        [SerializeField] Text levelText;
 
         private void Start()
         {
@@ -18,17 +19,24 @@ namespace Asteroids.UI
 
         private void OnEnable()
         {
-            GameEvents.ScoreUpdate += ScoreUpdate;
+            GameActions.ScoreUpdate += ScoreUpdate;
+            GameActions.LevelUpdate += LevelUpdate;
         }
 
         private void OnDisable()
         {
-            GameEvents.ScoreUpdate -= ScoreUpdate;
+            GameActions.ScoreUpdate -= ScoreUpdate;
+            GameActions.LevelUpdate -= LevelUpdate;
         }
 
         private void ScoreUpdate(int score)
         {
             scoreText.text = score.ToString();
+        }
+
+        private void LevelUpdate(int level)
+        {
+            levelText.text = level.ToString();
         }
     }
 }

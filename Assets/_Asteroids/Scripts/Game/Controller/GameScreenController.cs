@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Asteroids.Events;
+using Asteroids.Actions;
 
 namespace Asteroids.Controller
 {
@@ -10,17 +10,17 @@ namespace Asteroids.Controller
     {
         private void OnEnable()
         {
-            GameEvents.GameCompleted += GameCompleted;
+            GameActions.GameCompleted += GameCompleted;
         }
 
         private void OnDisable()
         {
-            GameEvents.GameCompleted -= GameCompleted;
+            GameActions.GameCompleted -= GameCompleted;
         }
 
         private void GameCompleted()
         {
-            GameEvents.ShowUIScreen(UIScreen.Result, true);
+            GameActions.ShowUIScreen(UIScreen.Result, true);
         }
     }
 }

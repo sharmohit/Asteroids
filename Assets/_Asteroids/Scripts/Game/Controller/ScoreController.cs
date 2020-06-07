@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using Asteroids.Events;
+﻿using System;
+using UnityEngine;
+using Asteroids.Actions;
 
 namespace Asteroids.Controller
 {
@@ -12,7 +13,8 @@ namespace Asteroids.Controller
 
         private void OnEnable()
         {
-            GameEvents.IncrementScore += AddScore;
+            GameActions.AddScore += AddScore;
+            GameActions.GetScore += GetScore;
         }
 
         private void Start()
@@ -22,7 +24,7 @@ namespace Asteroids.Controller
 
         private void OnDisable()
         {
-            GameEvents.IncrementScore -= AddScore;
+            GameActions.AddScore -= AddScore;
 
             int lastScore = PlayerPrefs.GetInt(Constants.HIGH_SCORE_SAVE_KEY);
 
@@ -32,11 +34,21 @@ namespace Asteroids.Controller
             }
         }
 
-        private void AddScore()
+        private void AddScore(int value)
         {
-            Score += 1;
+            Score += value;
 
-            GameEvents.ScoreUpdate(Score);
+            GameActions.ScoreUpdate(Score);
+
+            if(Score % 100 == 0)
+            {
+                GameActions.LevelUp();
+            }
+        }
+
+        private void GetScore(Action<int> callback)
+        {
+            callback?.Invoke(Score);
         }
     }
 }

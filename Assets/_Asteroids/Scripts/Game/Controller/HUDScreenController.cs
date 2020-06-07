@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Asteroids.Events;
+using Asteroids.Actions;
 
 namespace Asteroids.Controller
 {

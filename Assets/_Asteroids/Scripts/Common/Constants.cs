@@ -36,6 +36,12 @@
             public const string GAME_SCENE = "Game";
         }
 
+        public struct Tags
+        {
+            public const string PLAYER_BULLET_TAG = "Bullet";
+            public const string PLAYER_TAG = "Player";
+        }
+
         public const string HIGH_SCORE_SAVE_KEY = "high_score";
     }
 }

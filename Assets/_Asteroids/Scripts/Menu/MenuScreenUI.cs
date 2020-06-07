@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using Asteroids.Events;
+using Asteroids.Actions;
 
 namespace Asteroids.UI
 {
@@ -29,7 +29,7 @@ namespace Asteroids.UI
 
         private void LaunchClicked()
         {
-            GameEvents.UIButtonClicked(Constants.Buttons.LAUNCH_BUTTON);
+            GameActions.UIButtonClicked(Constants.Buttons.LAUNCH_BUTTON);
         }
     }
 }
