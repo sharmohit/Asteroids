@@ -47,6 +47,7 @@
             public const string SMALL_SAUCER = "SmallSaucer";
             public const string SHIELD_POWER_UP = "ShieldPowerUp";
             public const string SLOW_MO_POWER_UP = "SlowMoPowerUp";
+            public const string EXPLOSION_VFX = "VFX";
         }
 
         public struct Gameplay

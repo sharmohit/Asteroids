@@ -13,6 +13,7 @@ TagManager:
   - SmallSaucer
   - ShieldPowerUp
   - SlowMoPowerUp
+  - VFX
   layers:
   - Default
   - TransparentFX

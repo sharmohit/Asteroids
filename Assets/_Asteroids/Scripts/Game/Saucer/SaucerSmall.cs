@@ -20,13 +20,13 @@ namespace Asteroids.Gameplay
                 if (health <= 0)
                 {
                     GameActions.AddScore(rewardScore);
-                    GameActions.DestroySmallSaucer();
+                    GameActions.DestroySmallSaucer(gameObject);
                 }
             }
             else if (collision.tag == Constants.Tags.PLAYER_TAG)
             {
                 GameActions.AddScore(rewardScore);
-                GameActions.DestroySmallSaucer();
+                GameActions.DestroySmallSaucer(gameObject);
                 GameActions.DestroyPlayer();
             }
         }

@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3024811950723984975}
   - component: {fileID: 1760425114479625659}
-  - component: {fileID: 114901970760335232}
   - component: {fileID: 6062274806420956416}
   - component: {fileID: 5773952469403169979}
+  - component: {fileID: 5534554964794165690}
   m_Layer: 0
   m_Name: PlayerBullet
   m_TagString: PlayerBullet
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 1, b: 0.9282589, a: 1}
+  m_Color: {r: 0, g: 0.7848768, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -82,24 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &114901970760335232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5221753352336150369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c88b2d9d1040c245ab5d7708eb3a654, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 10
-  canRotate: 0
-  rotateSpeed: 40
-  translateSpace: 1
-  damage: 25
-  health: 100
 --- !u!122 &6062274806420956416
 Halo:
   m_ObjectHideFlags: 0
@@ -110,7 +92,7 @@ Halo:
   m_Enabled: 1
   m_Color:
     serializedVersion: 2
-    rgba: 4293394176
+    rgba: 4294959360
   m_Size: 0.1
 --- !u!58 &5773952469403169979
 CircleCollider2D:
@@ -128,3 +110,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
+--- !u!114 &5534554964794165690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5221753352336150369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 203cc384b9c346d4a90ccd16f4716b3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  canRotate: 0
+  rotateSpeed: 40
+  translateSpace: 1
+  damage: 25
+  health: 100

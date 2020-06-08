@@ -157,7 +157,7 @@ namespace Asteroids.Gameplay
             playerShip.GetComponent<Collider2D>().enabled = true;
         }
 
-        private void DestroyBigSaucer()
+        private void DestroyBigSaucer(GameObject bigSaucer)
         {
             GameObject powerUpObj = ObjectPool.Instance.GetPooledObject(Constants.Tags.SHIELD_POWER_UP);
             powerUpObj.transform.position = saucerBig.transform.position;
@@ -165,7 +165,7 @@ namespace Asteroids.Gameplay
             saucerBig.gameObject.SetActive(false);
         }
 
-        private void DestroySmallSaucer()
+        private void DestroySmallSaucer(GameObject smallSaucer)
         {
             GameObject powerUpObj = ObjectPool.Instance.GetPooledObject(Constants.Tags.SLOW_MO_POWER_UP);
             powerUpObj.transform.position = saucerSmall.transform.position;

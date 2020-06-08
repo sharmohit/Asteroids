@@ -25,8 +25,8 @@ namespace Asteroids.Actions
         public static Action<int> LivesUpdate;
 
         public static Action<GameObject> DestroyAsteroid;
-        public static Action DestroyBigSaucer;
-        public static Action DestroySmallSaucer;
+        public static Action<GameObject> DestroyBigSaucer;
+        public static Action<GameObject> DestroySmallSaucer;
         public static Action DestroyPlayer;
 
         public static Action PowerUpShield;
