@@ -11,6 +11,7 @@ namespace Asteroids.UI
     {
         [SerializeField] Text scoreText;
         [SerializeField] Text levelText;
+        [SerializeField] Text livesText;
 
         private void Start()
         {
@@ -21,12 +22,14 @@ namespace Asteroids.UI
         {
             GameActions.ScoreUpdate += ScoreUpdate;
             GameActions.LevelUpdate += LevelUpdate;
+            GameActions.LivesUpdate += LivesUpdate;
         }
 
         private void OnDisable()
         {
             GameActions.ScoreUpdate -= ScoreUpdate;
             GameActions.LevelUpdate -= LevelUpdate;
+            GameActions.LivesUpdate -= LivesUpdate;
         }
 
         private void ScoreUpdate(int score)
@@ -37,6 +40,11 @@ namespace Asteroids.UI
         private void LevelUpdate(int level)
         {
             levelText.text = level.ToString();
+        }
+
+        private void LivesUpdate(int lives)
+        {
+            livesText.text = lives.ToString();
         }
     }
 }

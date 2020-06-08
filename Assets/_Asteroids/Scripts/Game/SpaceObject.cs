@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Asteroids.Actions;
+using System.Collections;
 
 namespace Asteroids.Gameplay
 {
@@ -28,11 +29,23 @@ namespace Asteroids.Gameplay
             CalculateBounds(out minBound, out maxBound);
         }
 
+        public virtual void OnEnable()
+        {
+            GameActions.PowerUpSlowMo += PowerUpSlowMo;
+        }
+
+        public virtual void OnDisable()
+        {
+            GameActions.PowerUpSlowMo -= PowerUpSlowMo;
+        }
+
         public virtual void Update()
         {
             Move();
             if (canRotate)
                 Rotate();
+
+            CheckOutOfBounds();
         }
 
         public virtual void Move()
@@ -45,7 +58,7 @@ namespace Asteroids.Gameplay
             transform.Rotate(0, 0, rotateSpeed * Time.deltaTime);
         }
 
-        private void OnBecameInvisible()
+        public void CheckOutOfBounds()
         {
             Vector2 newPosition = transform.position;
             if (transform.position.x < minBound.x)
@@ -64,6 +77,19 @@ namespace Asteroids.Gameplay
         {
             min = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0));
             max = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 0));
+        }
+
+        private void PowerUpSlowMo()
+        {
+            float tempSpeed = moveSpeed;
+            moveSpeed = 0.5f;
+            StartCoroutine(DeActivateSlowMo(tempSpeed));
+        }
+
+        private IEnumerator DeActivateSlowMo(float originalSpeed)
+        {
+            yield return new WaitForSeconds(Constants.Gameplay.POWER_UP_DURATION);
+            moveSpeed = originalSpeed;
         }
     }
 }

@@ -49,7 +49,7 @@ namespace Asteroids.Gameplay
                 rotateCmd.Execute(playerShip, rotationInput);
             }
 
-            if (Input.GetKeyDown(KeyCode.H))
+            if(Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
             {
                 hyperspaceCmd.Execute(playerShip);
             }

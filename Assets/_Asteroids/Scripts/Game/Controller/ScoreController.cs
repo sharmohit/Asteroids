@@ -41,7 +41,7 @@ namespace Asteroids.Controller
         {
             Score += value;
 
-            GameActions.ScoreUpdate(Score);
+            GameActions.ScoreUpdate?.Invoke(Score);
             
             if( Score > scoreMultiple)
             {

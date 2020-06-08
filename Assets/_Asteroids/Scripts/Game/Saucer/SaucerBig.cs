@@ -4,28 +4,17 @@ using Asteroids.Actions;
 namespace Asteroids.Gameplay
 {
     /// <summary>
-    /// Big saucer object based on space object.
+    /// Big saucer object based on saucer object.
     /// </summary>
-    public class SaucerBig : SpaceObject
+    public class SaucerBig : Saucer
     {
-        public int rewardScore;
-
-        private void Start()
-        {
-            Direction = Vector3.left;
-        }
-
-        public override void Update()
-        {
-            Move();
-        }
-
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.tag == Constants.Tags.PLAYER_BULLET_TAG)
             {
                 SpaceObject spaceObject = collision.GetComponent<SpaceObject>();
                 health -= spaceObject.damage;
+                collision.gameObject.SetActive(false);
 
                 if (health <= 0)
                 {

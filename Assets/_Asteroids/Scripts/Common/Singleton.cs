@@ -14,12 +14,12 @@ namespace Asteroids
         {
             if (Instance == null)
             {
-                Instance = GetComponent<T>();
-                DontDestroyOnLoad(this.gameObject);
+                Instance = this as T;
+                DontDestroyOnLoad(this);
             }
             else
             {
-                Destroy(GetComponent<T>());
+                Destroy(gameObject);
             }
         }
     }

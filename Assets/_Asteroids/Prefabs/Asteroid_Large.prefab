@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 50007099604495324}
   m_Layer: 0
   m_Name: Asteroid_Large
-  m_TagString: Untagged
+  m_TagString: LargeAsteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,14 +110,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae60fe7391e54045a05a75f381d0aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 1
   canRotate: 1
   rotateSpeed: 40
   translateSpace: 0
   damage: 25
-  health: 100
-  nextAsteroid: {fileID: 5942092829173195312, guid: 65bcddf5dc14e364da6c2c407177dc98,
-    type: 3}
+  health: 50
+  nextAsteroidTag: MediumAsteroid
   rewardScore: 5
 --- !u!50 &50007099604495324
 Rigidbody2D:

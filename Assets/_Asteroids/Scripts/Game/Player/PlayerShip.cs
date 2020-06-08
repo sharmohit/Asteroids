@@ -8,9 +8,12 @@ namespace Asteroids.Gameplay
     /// </summary>
     public class PlayerShip : SpaceObject
     {
+        [SerializeField] GameObject shield;
         [SerializeField] GameObject bullet;
         [SerializeField] float forwardThrust = 7.0f;
         [SerializeField] float roatationalThrust = 3.5f;
+
+        public bool ShieldActivated { get; private set; }
 
         public int extraLives;
 
@@ -26,18 +29,24 @@ namespace Asteroids.Gameplay
             rb = GetComponent<Rigidbody2D>();
         }
 
-        private void OnEnable()
+        public override void OnEnable()
         {
-            GameActions.PowerUpPickedUp += PowerUpPickedUp;
+            GameActions.PowerUpShield += PowerUpShield;
         }
 
-        private void OnDisable()
+        public override void OnDisable()
         {
-            GameActions.PowerUpPickedUp -= PowerUpPickedUp;
+            GameActions.PowerUpShield -= PowerUpShield;
+        }
+
+        private void Start()
+        {
+            GameActions.LivesUpdate(extraLives);
         }
 
         public override void Update()
         {
+            CheckOutOfBounds();
         }
 
         #region Commands
@@ -53,7 +62,10 @@ namespace Asteroids.Gameplay
 
         public void Shoot()
         {
-            Instantiate(bullet, transform.position, transform.rotation);
+            GameObject bulletObj = ObjectPool.Instance.GetPooledObject(Constants.Tags.PLAYER_BULLET_TAG);
+            bulletObj.transform.position = transform.position;
+            bulletObj.transform.rotation = transform.rotation;
+            bulletObj.SetActive(true);
         }
 
         public void ActivateHyperspace()
@@ -86,9 +98,39 @@ namespace Asteroids.Gameplay
             AddRotationalThrust();
         }
 
-        private void PowerUpPickedUp()
+        private void PowerUpShield()
         {
-            Debug.Log("Power Up Added");
+            extraLives += Constants.Gameplay.EXTRA_LIFE_POWER_UP_COUNT;
+            GameActions.LivesUpdate(extraLives);
+            ActivateShield();
+            Invoke("DeActivateShield", Constants.Gameplay.POWER_UP_DURATION);
+        }
+
+        public void ActivateShield()
+        {
+            shield.SetActive(true);
+            ShieldActivated = true;
+        }
+
+        public void DeActivateShield()
+        {
+            shield.SetActive(false);
+            ShieldActivated = false;
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.tag == Constants.Tags.ENEMY_BULLET_TAG)
+            {
+                SpaceObject spaceObject = collision.GetComponent<SpaceObject>();
+                health -= spaceObject.damage;
+                collision.gameObject.SetActive(false);
+
+                if (health <= 0)
+                {
+                    GameActions.DestroyPlayer();
+                }
+            }
         }
     }
 }

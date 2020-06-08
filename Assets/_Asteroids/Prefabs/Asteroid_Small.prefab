@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 50334641944568824}
   m_Layer: 0
   m_Name: Asteroid_Small
-  m_TagString: Untagged
+  m_TagString: SmallAsteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,12 +110,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae60fe7391e54045a05a75f381d0aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 1.6
   canRotate: 1
   rotateSpeed: 40
   translateSpace: 0
   damage: 25
-  health: 100
+  health: 50
   nextAsteroid: {fileID: 0}
   rewardScore: 10
 --- !u!50 &50334641944568824

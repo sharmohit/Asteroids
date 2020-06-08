@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 2101018811681989265}
   - component: {fileID: 2101018811681989269}
   - component: {fileID: 2101018811681989268}
-  - component: {fileID: 2101018811681989271}
-  - component: {fileID: 2101018811681989270}
+  - component: {fileID: 4592340898443817595}
+  - component: {fileID: 5784135311586186949}
   m_Layer: 0
-  m_Name: Saucer_Big
-  m_TagString: BigSaucer
+  m_Name: Saucer_Small
+  m_TagString: SmallSaucer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2101018811681989264}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 5a24bbb422f88674088b948a71b3ca7f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a8af8a09774cde948b9d7d97b902c41f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,7 +103,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &2101018811681989271
+--- !u!58 &4592340898443817595
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,10 +116,10 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.14}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 4.81
---- !u!114 &2101018811681989270
+  m_Radius: 2.615
+--- !u!114 &5784135311586186949
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,16 +128,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2101018811681989264}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f8e7f96169fe1142bf0c79e8a902646, type: 3}
+  m_Script: {fileID: 11500000, guid: 09f78e7bcf1636549bab0f8201b10820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 1.5
   canRotate: 0
   rotateSpeed: 40
   translateSpace: 0
   damage: 25
   health: 100
   bullet: {fileID: 5221753352336150369, guid: 4477325757a43a043b5f6520c190414e, type: 3}
-  minShootDelay: 2
-  maxShootDelay: 5
-  rewardScore: 10
+  minShootDelay: 0.5
+  maxShootDelay: 1
+  rewardScore: 12

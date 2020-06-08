@@ -1,20 +1,29 @@
-﻿using UnityEngine;
-using Asteroids.Actions;
+﻿using Asteroids.Actions;
 
 namespace Asteroids.Gameplay
 {
     /// <summary>
-    /// Power up object is based on space object.
+    /// Power up is based on space object.
     /// </summary>
     public class PowerUp : SpaceObject
     {
-        private void OnTriggerEnter2D(Collider2D collision)
+        public override void OnEnable()
         {
-            if (collision.tag == Constants.Tags.PLAYER_TAG)
-            {
-                GameActions.PowerUpPickedUp();
-                Destroy(gameObject);
-            }
+            base.OnEnable();
+
+            GameActions.GameCompleted += GameCompleted;
+        }
+
+        public override void OnDisable()
+        {
+            base.OnDisable();
+
+            GameActions.GameCompleted -= GameCompleted;
+        }
+
+        private void GameCompleted()
+        {
+            gameObject.SetActive(false);
         }
     }
 }

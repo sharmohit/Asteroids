@@ -7,11 +7,23 @@ namespace Asteroids.Gameplay
     /// </summary>
     public class Bullet : SpaceObject
     {
-        public override void Awake()
+        public override void OnEnable()
         {
-            base.Awake();
+            base.OnEnable();
 
-            Destroy(gameObject, 2f);
+            Invoke("DisableBullet", Constants.Gameplay.BULLET_LIFETIME);
+        }
+
+        public override void OnDisable()
+        {
+            base.OnDisable();
+
+            CancelInvoke("DisableBullet");
+        }
+
+        private void DisableBullet()
+        {
+            gameObject.SetActive(false);
         }
     }
 }

@@ -112,6 +112,78 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &107864658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 107864659}
+  - component: {fileID: 107864660}
+  m_Layer: 0
+  m_Name: ObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &107864659
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107864658}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &107864660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107864658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39ca4156a37a71f48bde1dfceebb27c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemsToPool:
+  - count: 8
+    objectToPool: {fileID: 5221753352336150369, guid: fae7ff4e7f4967e4fa400226d574f889,
+      type: 3}
+  - count: 8
+    objectToPool: {fileID: 5221753352336150369, guid: 4477325757a43a043b5f6520c190414e,
+      type: 3}
+  - count: 10
+    objectToPool: {fileID: 1403767710459896197, guid: 6507c63d6b2e8bc48b50c1fa86d963ad,
+      type: 3}
+  - count: 20
+    objectToPool: {fileID: 5942092829173195312, guid: 65bcddf5dc14e364da6c2c407177dc98,
+      type: 3}
+  - count: 40
+    objectToPool: {fileID: 2577052183314073435, guid: a31cc66f2b056c24f8dd7add66652674,
+      type: 3}
+  - count: 1
+    objectToPool: {fileID: 2101018811681989264, guid: 84b80a68cc76c484b864656740cb4f11,
+      type: 3}
+  - count: 1
+    objectToPool: {fileID: 2101018811681989264, guid: 7f0c7a4d5cfa88a4e9249145d49661ba,
+      type: 3}
+  - count: 1
+    objectToPool: {fileID: 7229952619682473282, guid: ca20dd6b239e7604ea967f0fd773388d,
+      type: 3}
+  - count: 1
+    objectToPool: {fileID: 7229952619682473282, guid: f29b499c00b59f949aadcb13107a786c,
+      type: 3}
+  pooledObjects: []
 --- !u!1 &116314255
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,11 +308,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: b18fcc015b374b24886995ec2cf3f426, type: 3}
-    m_FontSize: 54
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 5
-    m_MaxSize: 78
+    m_MaxSize: 31
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -349,7 +421,7 @@ GameObject:
   - component: {fileID: 1006727728}
   - component: {fileID: 1006727729}
   m_Layer: 0
-  m_Name: System
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -438,18 +510,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: b18fcc015b374b24886995ec2cf3f426, type: 3}
-    m_FontSize: 52
+    m_FontSize: 33
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 5
-    m_MaxSize: 52
+    m_MaxSize: 34
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: 0
 --- !u!222 &1018132287
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -590,11 +662,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: b18fcc015b374b24886995ec2cf3f426, type: 3}
-    m_FontSize: 46
+    m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
-    m_MaxSize: 48
+    m_MinSize: 0
+    m_MaxSize: 24
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -660,12 +732,12 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 960, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
