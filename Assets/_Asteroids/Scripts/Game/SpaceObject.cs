@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using Asteroids.Actions;
-using System.Collections;
 
 namespace Asteroids.Gameplay
 {
@@ -12,10 +13,18 @@ namespace Asteroids.Gameplay
         [SerializeField] float moveSpeed = 2.0f;
         [SerializeField] bool canRotate;
         [SerializeField] float rotateSpeed = 40.0f;
+        [SerializeField] float maxHealth = 100.0f;
         [SerializeField] Space translateSpace = Space.World;
 
         public float damage = 25.0f;
-        public float health = 100.0f;
+        public float Health { get; set; }
+
+        protected float MaxHealth {
+            get
+            {
+                return maxHealth;
+            }
+        }
         
         public Vector3 Direction { get; set; }
 
@@ -31,12 +40,21 @@ namespace Asteroids.Gameplay
 
         public virtual void OnEnable()
         {
+            SceneManager.sceneUnloaded += SceneUnloaded;
             GameActions.PowerUpSlowMo += PowerUpSlowMo;
+
+            Health = maxHealth;
+        }
+
+        private void SceneUnloaded(Scene scene)
+        {
+            gameObject.SetActive(false);
         }
 
         public virtual void OnDisable()
         {
             GameActions.PowerUpSlowMo -= PowerUpSlowMo;
+            SceneManager.sceneUnloaded -= SceneUnloaded;
         }
 
         public virtual void Update()

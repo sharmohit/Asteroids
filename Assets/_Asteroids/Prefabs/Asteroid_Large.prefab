@@ -113,9 +113,10 @@ MonoBehaviour:
   moveSpeed: 1
   canRotate: 1
   rotateSpeed: 40
+  maxHealth: 75
   translateSpace: 0
   damage: 25
-  health: 50
+  health: 75
   nextAsteroidTag: MediumAsteroid
   rewardScore: 5
 --- !u!50 &50007099604495324

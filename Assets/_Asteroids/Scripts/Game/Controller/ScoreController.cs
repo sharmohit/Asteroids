@@ -9,9 +9,8 @@ namespace Asteroids.Controller
     /// </summary>
     public class ScoreController : MonoBehaviour
     {
-        public int Score { get; private set; }
-
-        private int scoreMultiple;
+        private int score;
+        private int level;
 
         private void OnEnable()
         {
@@ -21,38 +20,40 @@ namespace Asteroids.Controller
 
         private void Start()
         {
-            Score = 0;
-            scoreMultiple = Constants.Gameplay.LEVEL_UP_SCORE_MULTIPLE;
+            score = 0;
+            level = 1;
+            GameActions.LevelUpdate(level);
         }
 
         private void OnDisable()
         {
             GameActions.AddScore -= AddScore;
+            GameActions.GetScore -= GetScore;
 
             int lastScore = PlayerPrefs.GetInt(Constants.HIGH_SCORE_SAVE_KEY);
 
-            if (lastScore < Score)
+            if (lastScore < score)
             {
-                PlayerPrefs.SetInt(Constants.HIGH_SCORE_SAVE_KEY, Score);
+                PlayerPrefs.SetInt(Constants.HIGH_SCORE_SAVE_KEY, score);
             }
         }
 
         private void AddScore(int value)
         {
-            Score += value;
+            score += value;
 
-            GameActions.ScoreUpdate?.Invoke(Score);
-            
-            if( Score > scoreMultiple)
+            GameActions.ScoreUpdate?.Invoke(score);
+
+            if (Mathf.Floor(score / Constants.Gameplay.LEVEL_UP_SCORE_MULTIPLE) > level)
             {
-                GameActions.LevelUp();
-                scoreMultiple += scoreMultiple;
+                level++;
+                GameActions.LevelUpdate(level);
             }
         }
 
         private void GetScore(Action<int> callback)
         {
-            callback?.Invoke(Score);
+            callback?.Invoke(score);
         }
     }
 }

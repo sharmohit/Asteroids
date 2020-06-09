@@ -15,7 +15,10 @@ namespace Asteroids
     /// </summary>
     public class ObjectPool : Singleton<ObjectPool>
     {
+        // Holds object pool item in the list for expansion later.
         public List<ObjectPoolItem> itemsToPool;
+
+        // Holds all pooled objects in the list as they can grow.
         public List<GameObject> pooledObjects;
 
         private void Start()

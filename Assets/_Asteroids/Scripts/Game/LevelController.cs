@@ -15,6 +15,9 @@ namespace Asteroids.Gameplay
         private SaucerBig saucerBig;
         private SaucerSmall saucerSmall;
 
+        /// <summary>
+        /// Holds the pooled asteroids as they get Active and InActive.
+        /// </summary>
         private List<Asteroid> asteroids;
 
         private int currentLevel;
@@ -25,7 +28,7 @@ namespace Asteroids.Gameplay
             GameActions.DestroyBigSaucer += DestroyBigSaucer;
             GameActions.DestroySmallSaucer += DestroySmallSaucer;
             GameActions.DestroyPlayer += DestroyPlayer;
-            GameActions.LevelUp += LevelUp;
+            GameActions.LevelUpdate += LevelUpdate;
         }
 
         private void OnDisable()
@@ -33,16 +36,15 @@ namespace Asteroids.Gameplay
             GameActions.DestroyAsteroid -= DestroyAsteroid;
             GameActions.DestroyBigSaucer -= DestroyBigSaucer;
             GameActions.DestroySmallSaucer -= DestroySmallSaucer;
-            GameActions.LevelUp -= LevelUp;
+            GameActions.LevelUpdate -= LevelUpdate;
             GameActions.DestroyPlayer -= DestroyPlayer;
+
+            RemoveAllObjects();
         }
 
         private void Start()
         {
             asteroids = new List<Asteroid>();
-
-            GameActions.ShowUIScreen(UIScreen.HUD, true);
-            LevelUp();
 
             SpawnPlayer();
             SpawnAsteroids(Constants.Tags.LARGE_ASTEROID, currentLevel);
@@ -128,12 +130,12 @@ namespace Asteroids.Gameplay
             if (playerShip.ShieldActivated)
                 return;
 
-            if(playerShip.extraLives > 0)
+            if(playerShip.extraLives > 1)
             {
-                playerShip.GetComponent<SpriteRenderer>().enabled = false;
-                playerShip.GetComponent<Collider2D>().enabled = false;
+                playerShip.SetShipComponentActive(false);
                 Invoke("DeActivateShield", Constants.Gameplay.PLAYER_REVIVE_SHIELD_DURATION);
                 playerShip.extraLives--;
+                GameActions.LivesUpdate(playerShip.extraLives);
                 Invoke("RevivePlayer", Constants.Gameplay.PLAYER_REVIVE_DELAY);
             }
             else
@@ -147,7 +149,7 @@ namespace Asteroids.Gameplay
 
         private void RevivePlayer()
         {
-            playerShip.GetComponent<SpriteRenderer>().enabled = true;
+            playerShip.SetShipComponentActive(true);
             playerShip.ActivateShield();
         }
 
@@ -173,10 +175,9 @@ namespace Asteroids.Gameplay
             saucerSmall.gameObject.SetActive(false);
         }
 
-        private void LevelUp()
+        private void LevelUpdate(int level)
         {
-            currentLevel++;
-            GameActions.LevelUpdate(currentLevel);
+            currentLevel = level;
 
             GivePlayerExtraLife();
             SpawnSaucers();
@@ -191,7 +192,10 @@ namespace Asteroids.Gameplay
         {
             for (int i = 0; i < asteroids.Count; i++)
             {
-                asteroids[i].gameObject.SetActive(false);
+                if(asteroids[i] != null)
+                {
+                    asteroids[i].gameObject.SetActive(false);
+                }
             }
 
             asteroids.Clear();

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Asteroids.Actions;
 
@@ -9,6 +10,9 @@ namespace Asteroids.VFX
     /// </summary>
     public class VFXController : MonoBehaviour
     {
+        // Holds the explosionVFXObjects returned from Object Pool. 
+        private List<GameObject> explosionVFXObjects;
+
         private void OnEnable()
         {
             GameActions.DestroyAsteroid += ExplosionVFX;
@@ -21,6 +25,26 @@ namespace Asteroids.VFX
             GameActions.DestroyAsteroid -= ExplosionVFX;
             GameActions.DestroyBigSaucer -= ExplosionVFX;
             GameActions.DestroySmallSaucer -= ExplosionVFX;
+
+            RemoveAllVFX();
+        }
+
+        private void Start()
+        {
+            explosionVFXObjects = new List<GameObject>();
+        }
+
+        private void RemoveAllVFX()
+        {
+            for (int i = 0; i < explosionVFXObjects.Count; i++)
+            {
+                if(explosionVFXObjects[i] != null)
+                {
+                    explosionVFXObjects[i].SetActive(false);
+                }
+            }
+
+            explosionVFXObjects.Clear();
         }
 
         private void ExplosionVFX(GameObject asteroid)
@@ -30,6 +54,7 @@ namespace Asteroids.VFX
             ParticleSystem particleSystem = explosionVFX.GetComponent<ParticleSystem>();
             particleSystem.GetComponent<Renderer>().sortingOrder = 4;
             explosionVFX.SetActive(true);
+            explosionVFXObjects.Add(explosionVFX);
             StartCoroutine(DisableVFX(explosionVFX, particleSystem.main.duration));
         }
 
@@ -37,6 +62,7 @@ namespace Asteroids.VFX
         {
             yield return new WaitForSeconds(delay);
             vfxObj.SetActive(false);
+            explosionVFXObjects.Remove(vfxObj);
         }
     }
 }

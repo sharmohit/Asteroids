@@ -16,10 +16,10 @@ namespace Asteroids.Gameplay
             if(collision.tag == Constants.Tags.PLAYER_BULLET_TAG)
             {
                 SpaceObject spaceObject = collision.GetComponent<SpaceObject>();
-                health -= spaceObject.damage;
+                Health -= spaceObject.damage;
                 collision.gameObject.SetActive(false);
 
-                if (health <= 0)
+                if (Health <= 0)
                 {
                     GameActions.AddScore(rewardScore);
                     GameActions.DestroyAsteroid(gameObject);

@@ -18,6 +18,11 @@ namespace Asteroids.Controller
             GameActions.GameCompleted -= GameCompleted;
         }
 
+        private void Start()
+        {
+            GameActions.ShowUIScreen(UIScreen.HUD, true);
+        }
+
         private void GameCompleted()
         {
             GameActions.ShowUIScreen(UIScreen.Result, true);

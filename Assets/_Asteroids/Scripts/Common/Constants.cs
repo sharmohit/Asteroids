@@ -43,6 +43,8 @@
             public const string ENEMY_BULLET_TAG = "EnemyBullet";
             public const string PLAYER_TAG = "Player";
             public const string LARGE_ASTEROID = "LargeAsteroid";
+            public const string MEDIUM_ASTEROID = "MediumAsteroid";
+            public const string SMALL_ASTEROID = "SmallAsteroid";
             public const string BIG_SAUCER = "BigSaucer";
             public const string SMALL_SAUCER = "SmallSaucer";
             public const string SHIELD_POWER_UP = "ShieldPowerUp";
@@ -70,6 +72,19 @@
 
             public const float POWER_UP_DURATION = 15.0f;
             public const int EXTRA_LIFE_POWER_UP_COUNT = 5;
+        }
+
+        public struct Audio
+        {
+            public const string EXPLOSION_LARGE = "ExplosionLarge";
+            public const string EXPLOSION_MEDIUM = "ExplosionMedium";
+            public const string EXPLOSION_SMALL = "ExplosionSmall";
+
+            public const string LIFE = "Life";
+            public const string SHOOT = "Shoot";
+            public const string THRUST = "Thrust";
+            public const string SLOW_MO = "SlowMo";
+            public const string TELEPORT = "Teleport";
         }
 
         public const string HIGH_SCORE_SAVE_KEY = "high_score";

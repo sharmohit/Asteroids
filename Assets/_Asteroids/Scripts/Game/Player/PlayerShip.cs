@@ -8,6 +8,7 @@ namespace Asteroids.Gameplay
     /// </summary>
     public class PlayerShip : SpaceObject
     {
+        [SerializeField] GameObject thrustEffect;
         [SerializeField] GameObject shield;
         [SerializeField] GameObject bullet;
         [SerializeField] float forwardThrust = 7.0f;
@@ -42,6 +43,9 @@ namespace Asteroids.Gameplay
         private void Start()
         {
             GameActions.LivesUpdate(extraLives);
+
+            thrustEffect.SetActive(false);
+            shield.SetActive(false);
         }
 
         public override void Update()
@@ -53,6 +57,10 @@ namespace Asteroids.Gameplay
         public void MoveForward(float inputValue)
         {
             thrustInput = inputValue;
+
+            bool isMoving = inputValue == 1 ? true : false;
+            thrustEffect.SetActive(isMoving);
+            GameActions.PlayerShipThrust(isMoving);
         }
 
         public void RotateShip(float inputValue)
@@ -66,11 +74,14 @@ namespace Asteroids.Gameplay
             bulletObj.transform.position = transform.position;
             bulletObj.transform.rotation = transform.rotation;
             bulletObj.SetActive(true);
+
+            GameActions.PlayerShipShoot();
         }
 
         public void ActivateHyperspace()
         {
             transform.position = Utilities.GetRandomSpawnPoint();
+            GameActions.HyperspaceActivated();
         }
         #endregion
 
@@ -118,15 +129,22 @@ namespace Asteroids.Gameplay
             ShieldActivated = false;
         }
 
+        public void SetShipComponentActive(bool isActive)
+        {
+            GetComponent<SpriteRenderer>().enabled = isActive;
+            GetComponent<Collider2D>().enabled = isActive;
+            thrustEffect.GetComponent<Renderer>().enabled = isActive;
+        }
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.tag == Constants.Tags.ENEMY_BULLET_TAG)
             {
                 SpaceObject spaceObject = collision.GetComponent<SpaceObject>();
-                health -= spaceObject.damage;
+                Health -= spaceObject.damage;
                 collision.gameObject.SetActive(false);
 
-                if (health <= 0)
+                if (Health <= 0)
                 {
                     GameActions.DestroyPlayer();
                 }

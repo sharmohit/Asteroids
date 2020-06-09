@@ -134,6 +134,7 @@ MonoBehaviour:
   moveSpeed: 1.5
   canRotate: 0
   rotateSpeed: 40
+  maxHealth: 120
   translateSpace: 0
   damage: 25
   health: 100

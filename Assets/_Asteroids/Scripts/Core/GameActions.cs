@@ -18,7 +18,7 @@ namespace Asteroids.Actions
 
         // Gameplay Actions
         public static Action<int> AddScore;
-        public static Action LevelUp;
+        //public static Action LevelUp;
         public static Action<int> LevelUpdate;
         public static Action<Action<int>> GetScore;
         public static Action<int> ScoreUpdate;
@@ -31,5 +31,9 @@ namespace Asteroids.Actions
 
         public static Action PowerUpShield;
         public static Action PowerUpSlowMo;
+
+        public static Action<bool> PlayerShipThrust;
+        public static Action PlayerShipShoot;
+        public static Action HyperspaceActivated;
     }
 }

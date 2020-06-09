@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using Asteroids;
+using Asteroids.Audio;
 using Asteroids.Actions;
 
 /// <summary>
@@ -30,6 +31,7 @@ public class GameManager : Singleton<GameManager>
     private void SceneLoadedHandler(Scene scene, LoadSceneMode mode)
     {
         Time.timeScale = 1;
+        GameActions.GamePaused(false);
 
         if (scene.name == Constants.Scenes.MENU_SCENE)
         {

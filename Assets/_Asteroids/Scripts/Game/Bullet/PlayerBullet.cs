@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿using UnityEngine.SceneManagement;
 
 namespace Asteroids.Gameplay
 {
@@ -9,12 +9,23 @@ namespace Asteroids.Gameplay
     {
         public override void OnEnable()
         {
+            SceneManager.sceneUnloaded += SceneUnloaded;
+
+            Health = MaxHealth;
+
             Invoke("DisableBullet", Constants.Gameplay.BULLET_LIFETIME);
         }
 
         public override void OnDisable()
         {
+            SceneManager.sceneUnloaded -= SceneUnloaded;
+
             CancelInvoke("DisableBullet");
+        }
+
+        private void SceneUnloaded(Scene scene)
+        {
+            gameObject.SetActive(false);
         }
     }
 }
