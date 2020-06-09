@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsToPool:
-  - count: 8
+  - count: 15
     objectToPool: {fileID: 5221753352336150369, guid: fae7ff4e7f4967e4fa400226d574f889,
       type: 3}
   - count: 8

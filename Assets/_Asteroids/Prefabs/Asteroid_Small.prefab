@@ -110,13 +110,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae60fe7391e54045a05a75f381d0aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxMoveSpeed: 1.6
   moveSpeed: 1.6
   canRotate: 1
   rotateSpeed: 40
   maxHealth: 50
   translateSpace: 0
   damage: 25
-  health: 50
   nextAsteroidTag: 
   rewardScore: 10
 --- !u!50 &50334641944568824

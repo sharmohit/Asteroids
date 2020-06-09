@@ -61,7 +61,7 @@
             public const float BIG_SAUCER_SPAWN_TIME = 4.0f;
             public const float SMALL_SAUCER_SPAWN_TIME = 10.0f;
 
-            public const float BULLET_LIFETIME = 1.2f;
+            public const float BULLET_LIFETIME = 2.0f;
             public const float NEXT_LEVEL_DELAY = 1.2f;
             public const float PLAYER_REVIVE_DELAY = 0.3f;
             public const float PLAYER_REVIVE_SHIELD_DURATION = 2f;

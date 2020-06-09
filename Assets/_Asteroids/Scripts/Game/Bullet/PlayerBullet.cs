@@ -12,6 +12,7 @@ namespace Asteroids.Gameplay
             SceneManager.sceneUnloaded += SceneUnloaded;
 
             Health = MaxHealth;
+            MoveSpeed = MaxMoveSpeed;
 
             Invoke("DisableBullet", Constants.Gameplay.BULLET_LIFETIME);
         }

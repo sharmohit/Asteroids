@@ -10,7 +10,7 @@ namespace Asteroids.Gameplay
     /// </summary>
     public class SpaceObject : MonoBehaviour
     {
-        [SerializeField] float moveSpeed = 2.0f;
+        [SerializeField] float maxMoveSpeed = 2.0f;
         [SerializeField] bool canRotate;
         [SerializeField] float rotateSpeed = 40.0f;
         [SerializeField] float maxHealth = 100.0f;
@@ -18,6 +18,15 @@ namespace Asteroids.Gameplay
 
         public float damage = 25.0f;
         public float Health { get; set; }
+        public float MoveSpeed { get; set; }
+
+        protected float MaxMoveSpeed
+        {
+            get
+            {
+                return maxMoveSpeed;
+            }
+        }
 
         protected float MaxHealth {
             get
@@ -44,6 +53,7 @@ namespace Asteroids.Gameplay
             GameActions.PowerUpSlowMo += PowerUpSlowMo;
 
             Health = maxHealth;
+            MoveSpeed = maxMoveSpeed; 
         }
 
         private void SceneUnloaded(Scene scene)
@@ -68,7 +78,7 @@ namespace Asteroids.Gameplay
 
         public virtual void Move()
         {
-            transform.Translate(Direction * moveSpeed * Time.deltaTime, translateSpace);
+            transform.Translate(Direction * MoveSpeed * Time.deltaTime, translateSpace);
         }
 
         public virtual void Rotate()
@@ -99,15 +109,15 @@ namespace Asteroids.Gameplay
 
         private void PowerUpSlowMo()
         {
-            float tempSpeed = moveSpeed;
-            moveSpeed = 0.5f;
+            float tempSpeed = MoveSpeed;
+            MoveSpeed = 0.5f;
             StartCoroutine(DeActivateSlowMo(tempSpeed));
         }
 
         private IEnumerator DeActivateSlowMo(float originalSpeed)
         {
             yield return new WaitForSeconds(Constants.Gameplay.POWER_UP_DURATION);
-            moveSpeed = originalSpeed;
+            MoveSpeed = originalSpeed;
         }
     }
 }

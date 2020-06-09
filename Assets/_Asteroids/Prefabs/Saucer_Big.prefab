@@ -131,12 +131,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f8e7f96169fe1142bf0c79e8a902646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxMoveSpeed: 1
   moveSpeed: 1
   canRotate: 0
   rotateSpeed: 40
+  maxHealth: 100
   translateSpace: 0
   damage: 25
-  health: 100
   bullet: {fileID: 5221753352336150369, guid: 4477325757a43a043b5f6520c190414e, type: 3}
   minShootDelay: 2
   maxShootDelay: 5

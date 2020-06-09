@@ -73,7 +73,9 @@ namespace Asteroids.Gameplay
             GameObject bulletObj = ObjectPool.Instance.GetPooledObject(Constants.Tags.PLAYER_BULLET_TAG);
             bulletObj.transform.position = transform.position;
             bulletObj.transform.rotation = transform.rotation;
+            PlayerBullet playerBullet = bulletObj.GetComponent<PlayerBullet>();
             bulletObj.SetActive(true);
+            playerBullet.MoveSpeed += rb.velocity.magnitude;
 
             GameActions.PlayerShipShoot();
         }

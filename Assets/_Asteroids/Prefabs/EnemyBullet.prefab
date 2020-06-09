@@ -110,12 +110,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c88b2d9d1040c245ab5d7708eb3a654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxMoveSpeed: 10
   moveSpeed: 10
   canRotate: 0
   rotateSpeed: 40
+  maxHealth: 100
   translateSpace: 1
   damage: 25
-  health: 100
 --- !u!122 &6825490425972864953
 Halo:
   m_ObjectHideFlags: 0

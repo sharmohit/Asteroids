@@ -21,6 +21,11 @@ namespace Asteroids.Gameplay
             CancelInvoke("DisableBullet");
         }
 
+        public override void Update()
+        {
+            Move();
+        }
+
         private void DisableBullet()
         {
             gameObject.SetActive(false);
