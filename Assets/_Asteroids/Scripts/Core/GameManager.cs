@@ -9,9 +9,7 @@ using Asteroids.Actions;
 /// </summary>
 public class GameManager : Singleton<GameManager>
 {
-    private GameState gameState;
-
-    public GameState GameState { get; }
+    public GameState GameState { get; private set; }
 
     protected override void Awake()
     {
@@ -35,33 +33,33 @@ public class GameManager : Singleton<GameManager>
 
         if (scene.name == Constants.Scenes.MENU_SCENE)
         {
-            gameState = GameState.Menu;
+            GameState = GameState.Menu;
         }
         else
         {
-            gameState = GameState.Running;
+            GameState = GameState.Running;
         }
     }
 
     public void PauseGame()
     {
-        if(gameState == GameState.Pause)
+        if (GameState == GameState.Pause)
         {
             Time.timeScale = 1;
             GameActions.GamePaused(false);
-            gameState = GameState.Running;
+            GameState = GameState.Running;
         }
         else
         {
             Time.timeScale = 0;
             GameActions.GamePaused(true);
-            gameState = GameState.Pause;
+            GameState = GameState.Pause;
         }
     }
 
     public void GameCompleted()
     {
-        gameState = GameState.Result;
+        GameState = GameState.Result;
         GameActions.GameCompleted();
     }
 }
